@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Presupuestos</title>
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Columna de Inputs -->
+    <div class="inputs-column">
+      <h2>Ingresos</h2>
+      <div class="input-row">
+        <div class="card">
+          <label for="ingresoJuan">Ingreso de Juan:</label>
+          <input type="number" id="ingresoJuan" placeholder="Ingreso de Juan" oninput="calcularAportes()">
+        </div>
+        <div class="card">
+          <label for="ingresoMarcos">Ingreso de Marcos:</label>
+          <input type="number" id="ingresoMarcos" placeholder="Ingreso de Marcos" oninput="calcularAportes()">
+        </div>
+      </div>
+
+      <h2>Porcentajes</h2>
+      <div class="input-row">
+        <div class="card">
+          <label for="porcentajeHogar">Hogar:</label>
+          <input type="number" id="porcentajeHogar" value="50" onchange="ajustarPorcentajes('hogar')"
+            oninput="calcularAportes()">
+        </div>
+        <div class="card">
+          <label for="porcentajePersonal">Personal:</label>
+          <input type="number" id="porcentajePersonal" value="30" onchange="ajustarPorcentajes('personal')"
+            oninput="calcularAportes()">
+        </div>
+        <div class="card">
+          <label for="porcentajeAhorro">Ahorro:</label>
+          <input type="number" id="porcentajeAhorro" value="20" onchange="ajustarPorcentajes('ahorro')"
+            oninput="calcularAportes()">
+        </div>
+      </div>
+
+      <h2>Presupuestos</h2>
+      <div class="card">
+        <label for="presupuestoHogar">Presupuesto fijo para hogar:</label>
+        <input type="number" id="presupuestoHogar" placeholder="Presupuesto Hogar" oninput="calcularAportes()">
+      </div>
+    </div>
+
+    <!-- Columna de Resultados -->
+    <div class="results-column">
+      <h2>Resultado</h2>
+      <div class="pre-results" id="resultados">
+        <!-- Los resultados se mostrarán aquí -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
