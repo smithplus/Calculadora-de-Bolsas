@@ -15,17 +15,17 @@ body {
 
 /* Columna de inputs */
 .inputs-column {
-    width: 48%;
-    /* Ajustar según el ancho deseado */
+    width: 50%; /* Cambiado al 50% para ocupar la mitad del ancho */
+    max-width: none; /* Elimina el límite máximo de ancho */
     padding: 20px;
-    margin-right: 2%;
+    margin-right: 0; /* Elimina el margen derecho */
     /* Espacio entre columnas */
 }
 
 /* Columna de resultados */
 .results-column {
-    width: 50%;
-    /* Ajustar según el ancho deseado */
+    width: 50%; /* Cambiado al 50% para ocupar la mitad del ancho */
+    max-width: none; /* Elimina el límite máximo de ancho */
     border-radius: 8px;
     padding: 20px;
 }
@@ -38,8 +38,8 @@ body {
     gap: 12px;
     flex: 1 0 0;
     border-radius: 16px;
-border: 1px solid #E6E6E6;
-background: #FFF;
+    border: 1px solid #E6E6E6;
+    background: #FFF;
 }
 
 h2 {
@@ -147,6 +147,8 @@ button:hover {
         margin-right: 0;
         margin-bottom: 20px;
     }
+
+    /* Otros ajustes responsivos si es necesario... */
 }
 
 .input-group {
@@ -170,8 +172,12 @@ button:hover {
 /* Puedes necesitar ajustar el ancho de los inputs dentro de input-item si es demasiado grande */
 input[type="number"] {
     width: calc(100% - 20px);
-    /* Ajusta esto según sea necesario */
-    /* Otros estilos de input aquí */
+    /* Restar el padding total de la tarjeta */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #F6F6F6;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 /* ... tus otros estilos ... */
