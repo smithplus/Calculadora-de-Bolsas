@@ -1,47 +1,53 @@
 function ajustarPorcentajes(campoModificado) {
-    var porcentajeHogar = parseFloat(document.getElementById('porcentajeHogar').value);
-    var porcentajePersonal = parseFloat(document.getElementById('porcentajePersonal').value);
-    var porcentajeAhorro = parseFloat(document.getElementById('porcentajeAhorro').value);
+    var porcentajeHogar = parseFloat(document.getElementById('porcentajeHogar').value) || 0;
+    var porcentajePersonal = parseFloat(document.getElementById('porcentajePersonal').value) || 0;
+    var porcentajeAhorro = parseFloat(document.getElementById('porcentajeAhorro').value) || 0;
 
-    // Ajustar los otros dos campos para que la suma sea siempre 100%
     if (campoModificado === 'hogar') {
-        porcentajeAhorro = 100 - porcentajeHogar - porcentajePersonal;
+        porcentajePersonal = (100 - porcentajeHogar - porcentajeAhorro).toFixed(0);
+        document.getElementById('porcentajePersonal').value = porcentajePersonal;
     } else if (campoModificado === 'personal') {
-        porcentajeAhorro = 100 - porcentajeHogar - porcentajePersonal;
+        porcentajeAhorro = (100 - porcentajeHogar - porcentajePersonal).toFixed(0);
+        document.getElementById('porcentajeAhorro').value = porcentajeAhorro;
     } else if (campoModificado === 'ahorro') {
-        porcentajePersonal = 100 - porcentajeHogar - porcentajeAhorro;
+        porcentajeHogar = (100 - porcentajePersonal - porcentajeAhorro).toFixed(0);
+        document.getElementById('porcentajeHogar').value = porcentajeHogar;
     }
 
-    document.getElementById('porcentajeHogar').value = porcentajeHogar;
-    document.getElementById('porcentajePersonal').value = porcentajePersonal;
-    document.getElementById('porcentajeAhorro').value = porcentajeAhorro;
+    calcularAportes(); // Recalcular los aportes después del ajuste
 }
 
 function calcularAportes() {
-    var ingresoJuan = parseFloat(document.getElementById('ingresoJuan').value);
-    var ingresoMarcos = parseFloat(document.getElementById('ingresoMarcos').value);
-    var presupuestoHogar = parseFloat(document.getElementById('presupuestoHogar').value);
+    var ingresoAlpha = parseFloat(document.getElementById('ingresoAlpha').value) || 0;
+    var ingresoBeta = parseFloat(document.getElementById('ingresoBeta').value) || 0;
+    var presupuestoHogarInput = document.getElementById('presupuestoHogar');
+    var presupuestoHogar = parseFloat(presupuestoHogarInput.value);
 
-    // Obteniendo los porcentajes de los campos de entrada
     var porcentajeHogar = parseFloat(document.getElementById('porcentajeHogar').value) / 100;
     var porcentajePersonal = parseFloat(document.getElementById('porcentajePersonal').value) / 100;
     var porcentajeAhorro = parseFloat(document.getElementById('porcentajeAhorro').value) / 100;
 
-    var porcentajeJuan = ingresoJuan / (ingresoJuan + ingresoMarcos);
-    var porcentajeMarcos = ingresoMarcos / (ingresoJuan + ingresoMarcos);
+    var porcentajeAlpha = ingresoAlpha / (ingresoAlpha + ingresoBeta) || 0;
+    var porcentajeBeta = ingresoBeta / (ingresoAlpha + ingresoBeta) || 0;
 
-    var aporteHogarJuan = presupuestoHogar * porcentajeJuan;
-    var aporteHogarMarcos = presupuestoHogar * porcentajeMarcos;
+    if (presupuestoHogarInput.value.trim() === '') {
+        presupuestoHogar = (ingresoAlpha + ingresoBeta) * porcentajeHogar;
+    } else {
+        presupuestoHogar = presupuestoHogar || 0;
+    }
 
-    var personalJuan = porcentajePersonal * ingresoJuan;
-    var ahorroJuan = porcentajeAhorro * ingresoJuan;
+    var aporteHogarAlpha = presupuestoHogar * porcentajeAlpha;
+    var aporteHogarBeta = presupuestoHogar * porcentajeBeta;
 
-    var personalMarcos = porcentajePersonal * ingresoMarcos;
-    var ahorroMarcos = porcentajeAhorro * ingresoMarcos;
+    var personalAlpha = porcentajePersonal * ingresoAlpha;
+    var ahorroAlpha = porcentajeAhorro * ingresoAlpha;
 
-    var totalHogar = aporteHogarJuan + aporteHogarMarcos;
-    var totalPersonal = personalJuan + personalMarcos;
-    var totalAhorro = ahorroJuan + ahorroMarcos;
+    var personalBeta = porcentajePersonal * ingresoBeta;
+    var ahorroBeta = porcentajeAhorro * ingresoBeta;
+
+    var totalHogar = aporteHogarAlpha + aporteHogarBeta;
+    var totalPersonal = personalAlpha + personalBeta;
+    var totalAhorro = ahorroAlpha + ahorroBeta;
 
     var resultadosHTML = `
         <div class="result-card">
@@ -53,13 +59,13 @@ function calcularAportes() {
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Juan debe aportar para el hogar:</span>
-                <span class="monto">$${aporteHogarJuan.toFixed(2)}</span>
+                <span>Alpha debe aportar para el hogar:</span>
+                <span class="monto">$${aporteHogarAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Marcos debe aportar para el hogar:</span>
-                <span class="monto">$${aporteHogarMarcos.toFixed(2)}</span>
+                <span>Beta debe aportar para el hogar:</span>
+                <span class="monto">$${aporteHogarBeta.toFixed(2)}</span>
             </div>
         </div>
         <div class="result-card">
@@ -71,13 +77,13 @@ function calcularAportes() {
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Gasto personal de Juan:</span>
-                <span class="monto">$${personalJuan.toFixed(2)}</span>
+                <span>Gasto personal de Alpha:</span>
+                <<span class="monto">$${personalAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Gasto personal de Marcos:</span>
-                <span class="monto">$${personalMarcos.toFixed(2)}</span>
+                <span>Gasto personal de Beta:</span>
+                <span class="monto">$${personalBeta.toFixed(2)}</span>
             </div>
         </div>
         <div class="result-card">
@@ -89,16 +95,19 @@ function calcularAportes() {
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Ahorro de Juan:</span>
-                <span class="monto">$${ahorroJuan.toFixed(2)}</span>
+                <span>Ahorro de Alpha:</span>
+                <span class="monto">$${ahorroAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
-                <span>Ahorro de Marcos:</span>
-                <span class="monto">$${ahorroMarcos.toFixed(2)}</span>
+                <span>Ahorro de Beta:</span>
+                <span class="monto">$${ahorroBeta.toFixed(2)}</span>
             </div>
         </div>
     `;
 
     document.getElementById('resultados').innerHTML = resultadosHTML;
 }
+
+// Inicializar la calculadora al cargar la página
+document.addEventListener('DOMContentLoaded', calcularAportes);
