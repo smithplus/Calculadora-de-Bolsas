@@ -60,12 +60,12 @@ function calcularAportes() {
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Alpha debe aportar para el hogar:</span>
-                <span class="monto">$${aporteHogarAlpha.toFixed(2)}</span>
+                <span class="aporte">$${aporteHogarAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Beta debe aportar para el hogar:</span>
-                <span class="monto">$${aporteHogarBeta.toFixed(2)}</span>
+                <span class="aporte">$${aporteHogarBeta.toFixed(2)}</span>
             </div>
         </div>
         <div class="result-card">
@@ -78,12 +78,12 @@ function calcularAportes() {
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Gasto personal de Alpha:</span>
-                <<span class="monto">$${personalAlpha.toFixed(2)}</span>
+                <span class="aporte">$${personalAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Gasto personal de Beta:</span>
-                <span class="monto">$${personalBeta.toFixed(2)}</span>
+                <span class="aporte">$${personalBeta.toFixed(2)}</span>
             </div>
         </div>
         <div class="result-card">
@@ -96,12 +96,12 @@ function calcularAportes() {
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Ahorro de Alpha:</span>
-                <span class="monto">$${ahorroAlpha.toFixed(2)}</span>
+                <span class="aporte">$${ahorroAlpha.toFixed(2)}</span>
             </div>
             <div class="result-item">
                 <span class="icono">👤</span>
                 <span>Ahorro de Beta:</span>
-                <span class="monto">$${ahorroBeta.toFixed(2)}</span>
+                <span class="aporte">$${ahorroBeta.toFixed(2)}</span>
             </div>
         </div>
     `;

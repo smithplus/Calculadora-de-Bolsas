@@ -126,6 +126,9 @@ button:hover {
     font-weight: 500;
     line-height: normal;
 }
+.aporte {
+    font-weight: 600;
+}
 
 .result-item {
     margin-top: 20px;
